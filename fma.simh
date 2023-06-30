@@ -1,0 +1,31 @@
+#!/bin/env pdp7
+
+# AX + B
+#  where A = 5, B = 3
+
+# X <- 2
+d     ac 2
+# B <- 3
+d    260 3
+
+# FMA
+d -m 201 mul
+d    202 5
+d -m 203 lacq
+d -m 204 add 260
+d -m 205 hlt
+
+# expect ac = 13(=5*2+3)
+go 201
+e -d  ac
+
+# expect ac = 68(=5*13+3)
+go 201
+e -d  ac
+
+# expect ac = 343(=5*68+3)
+go 201
+e -d  ac
+
+q
+

@@ -1,0 +1,32 @@
+#!/bin/env pdp7
+
+# AX + B
+#  where A = 5, B = 3
+
+# B <- 3
+d    260 3
+
+# FMA function
+#    200 return address stored by caller `jms`
+d -m 201 mul
+d    202 5
+d -m 203 lacq
+d -m 204 add 260
+d -m 205 jmp i 200
+
+# main
+# argument of FMA
+d     ac 2
+# call FMA function
+d -m   0 jms 200
+d -m   1 jms 200
+d -m   2 jms 200
+d -m   3 hlt
+
+go   0
+
+# expect ac = 343
+e -d  ac
+
+q
+
