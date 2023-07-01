@@ -1,0 +1,18 @@
+#!/bin/env pdp7
+
+# print char function
+d -m 201 tcf
+d -m 202 tls
+d -m 203 tsf
+d -m 204 jmp 203
+d -m 205 jmp i 200
+
+# main
+d     ac 101
+d -m 100 jms 200
+d -m 101 hlt
+
+go 100
+
+q
+

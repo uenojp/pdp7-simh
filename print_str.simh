@@ -1,0 +1,55 @@
+#!/bin/env pdp7
+
+# place "Hello World"
+d -a  00 H
+d -a  01 e
+d -a  02 l
+d -a  03 l
+d -a  04 o
+d     05 40
+d -a  06 W
+d -a  07 o
+d -a  10 r
+d -a  11 l
+d -a  12 d
+d -a  13 !
+d     14 0
+
+# print char function
+d -m 201 tcf
+d -m 202 tls
+d -m 203 tsf
+d -m 204 jmp 203
+d -m 205 jmp i 200
+
+# print string function
+#   460: pinter to string (loop index)
+#   461: 1 (constant)
+d    461 1
+d -m 301 dac 460
+# load char
+d -m 302 lac i 460
+# goto return if char == NULL
+d -m 303 sza
+d -m 304 jmp 306
+# return
+d -m 305 jmp i 300
+# call print char
+d -m 306 jms 200
+# i++
+d -m 307 lac 460
+d -m 310 add 461
+d -m 311 dac 460
+# back
+d -m 312 jmp 302
+
+# main
+d     ac 0
+d -m 100 jms 300
+d -m 101 hlt
+
+go 100
+# e -m 301-312
+
+q
+
