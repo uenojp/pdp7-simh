@@ -1,0 +1,35 @@
+#!/bin/env pdp7
+
+set tti fdx
+
+# print char function
+d -m 201 tcf
+d -m 202 tls
+d -m 203 tsf
+d -m 204 jmp 203
+d -m 205 jmp i 200
+
+# read char function
+d -m 501 ksf
+d -m 502 jmp 501
+d -m 503 krb
+d -m 504 jmp i 500
+
+# main
+d    160 215
+d -m 100 jms 500
+d -m 101 jms 200
+# goto output LF if AC == CR
+d -m 102 sad 160
+d -m 103 jmp 105
+d -m 104 jmp 100
+# output LF
+d -m 105 law 12
+d -m 106 jms 200
+d -m 107 jmp 100
+d -m 108 hlt
+
+go 100
+
+q
+

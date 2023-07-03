@@ -1,0 +1,35 @@
+#!/bin/env pdp7
+
+# read char function
+# goto krb(read) if teletype buffer is ready
+d -m 501 ksf
+d -m 502 jmp 501
+# read a char from teletype buffer
+d -m 503 krb
+d -m 504 jmp i 500
+
+#
+# NOTE:
+#   The print_char function outputs and waits until it is done,
+#   while the read_char function does the opposite and reads when
+#   ready for input.
+#
+#   krb does not block for reading.
+#
+# DOES NOT WORK
+# The teletype buffer is not ready, so `krb` cannot be read from the buffer.
+# d -m 501 krb
+# d -m 502 ksf
+# d -m 503 jmp 502
+# d -m 504 hlt
+
+# main
+d -m 100 jms 500
+d -m 101 hlt
+
+e ac
+go 100
+e ac
+
+q
+
