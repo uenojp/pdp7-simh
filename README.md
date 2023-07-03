@@ -4,7 +4,7 @@ Inspired by SimHでPDP-7ベアメタルプログラミング (http://yuma.ohgami
 ## open-simh installation
 ```
 # ref. SIMH-V4-status.md
-sudo apt install libpcap-dev libpcre3-dev vde2 libsdl2-dev libsdl2-ttf-dev libedit-dev
+sudo apt install libpcap-dev libpcre3-dev vde2 libsdl2-dev libsdl2-ttf-dev libedit-dev &&
     git clone https://github.com/open-simh/simh ~/git/simh &&
     cd ~/git/simh &&
     make pdp7 -j"$(nproc)" &&
