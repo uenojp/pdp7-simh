@@ -1,0 +1,21 @@
+#!/bin/env pdp7
+
+d -m 100 law 1000
+d -m 101 idla
+d -m 102 idsi
+d -m 103 jmp 102
+d -m 104 jmp 100
+
+d 1000 020117
+d 1001 021000
+d 1002 301000
+d 1003 600100
+d 1004 003000
+
+set g2out disabled
+set dpy enabled
+
+go 100
+
+q
+
